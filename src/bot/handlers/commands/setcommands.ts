@@ -16,10 +16,6 @@ function getPrivateChatCommands(localeCode: string): BotCommand[] {
       command: 'start',
       description: i18n.t(localeCode, 'start-command-description'),
     },
-    {
-      command: 'schedule',
-      description: i18n.t(localeCode, 'schedule-command-description'),
-    },
   ]
 }
 
@@ -32,8 +28,22 @@ function getPrivateChatAdminCommands(localeCode: string): BotCommand[] {
   ]
 }
 
-function getGroupChatCommands(_localeCode: string): BotCommand[] {
-  return []
+function getPrivateChatBetaCommands(localeCode: string): BotCommand[] {
+  return [
+    {
+      command: 'schedule',
+      description: i18n.t(localeCode, 'schedule-command-description'),
+    },
+  ]
+}
+
+function getGroupChatCommands(localeCode: string): BotCommand[] {
+  return [
+    {
+      command: 'lunch',
+      description: i18n.t(localeCode, 'lunch-command-description'),
+    },
+  ]
 }
 
 export async function setCommandsHandler(ctx: CommandContext<Context>) {
@@ -92,6 +102,21 @@ export async function setCommandsHandler(ctx: CommandContext<Context>) {
 
     await Promise.all(requests)
   }
+
+  // set private chat commands for beta testers
+  await ctx.api.setMyCommands(
+    [
+      ...getPrivateChatCommands(DEFAULT_LANGUAGE_CODE),
+      ...getPrivateChatBetaCommands(DEFAULT_LANGUAGE_CODE),
+      ...(isMultipleLocales ? [getLanguageCommand(DEFAULT_LANGUAGE_CODE)] : []),
+    ],
+    {
+      scope: {
+        type: 'chat',
+        chat_id: Number(ctx.config.betaTesters),
+      },
+    },
+  )
 
   // set private chat commands for owner
   await ctx.api.setMyCommands(

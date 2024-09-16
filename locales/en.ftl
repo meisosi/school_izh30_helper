@@ -16,9 +16,16 @@ language-changed = Language successfully changed!
 
 ## Schedule Feature
 
-schedule-fetch = Please, wait some time
-schedule-fetched = This is schedule for this day!
-schedule-fetch-error = A error occurred while I try to fetch the schedule
+schedule = 
+    .fetch = Please wait a little bit
+    .current-fetched = This is the schedule for {$month}.{$day}!
+    .preliminary-fetched = This is a tentative schedule for the next day!
+    .fetch-error = Oops... There was a problem, I couldn't get the schedule
+    .title = Schedule for {$date}:
+    .lesson = {$index} lesson) {$lesson}
+    .warning =  It's still early, probably the schedule for the next day may be different, please make another request a little later or look at the preliminary inquiry
+    .preliminary = Check the preliminary schedule
+    .current = Check the current schedule
 
 ## Admin Feature
 

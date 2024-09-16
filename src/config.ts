@@ -9,6 +9,8 @@ const baseConfigSchema = v.object({
   googleToken: v.pipe(v.string(), v.regex(/^[\w-]+$/, 'Invalid google token')),
   botAllowedUpdates: v.optional(v.pipe(v.string(), v.transform(JSON.parse), v.array(v.picklist(API_CONSTANTS.ALL_UPDATE_TYPES))), '[]'),
   botAdmins: v.optional(v.pipe(v.string(), v.transform(JSON.parse), v.array(v.number())), '[]'),
+  lunchMasters: v.optional(v.pipe(v.string(), v.transform(JSON.parse), v.array(v.number())), '[]'),
+  betaTesters: v.optional(v.pipe(v.string(), v.transform(JSON.parse), v.array(v.number())), '[]'),
 })
 
 const configSchema = v.variant('botMode', [
