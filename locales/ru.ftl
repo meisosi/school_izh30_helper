@@ -8,7 +8,9 @@ setcommands-command-description = Обновить команды
 
 ## Welcome Feature
 
-welcome = Приветик!
+welcome = 
+    .menu = Приветик!
+
 
 ## Language Feature
 

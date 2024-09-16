@@ -19,7 +19,6 @@ feature.command('schedule', logHandle('command-schedule'), async (ctx) => {
     return ctx.reply(ctx.t('schedule.fetch-error'))
   }
   else {
-    // const _scheduleImage = await createScheduleCanvas(schedule)
     const currentDay = new Date().getDate()
     const currentMonth = new Date().getMonth() + 1
     return replyMsg.editText(ctx.t('schedule.current-fetched', { day: currentDay, month: currentMonth }), {
@@ -55,7 +54,6 @@ feature.callbackQuery(
         return ctx.reply(ctx.t('schedule.fetch-error'))
       }
       else {
-        // const _scheduleImage = await createScheduleCanvas(schedule)
         const currentDay = new Date().getDate()
         const currentMonth = new Date().getMonth() + 1
         return ctx.editMessageText(ctx.t('schedule.current-fetched', { day: currentDay, month: currentMonth }), {

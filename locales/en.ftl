@@ -3,11 +3,13 @@
 start-command-description = Start the bot
 language-command-description = Change language
 schedule-command-description = Get schedule
+lunch-command-description =  Poll lunches
 setcommands-command-description = Set bot commands
 
 ## Welcome Feature
 
-welcome = Welcome!
+welcome = 
+    .menu = Hii~!
 
 ## Language Feature
 
@@ -26,6 +28,14 @@ schedule =
     .warning =  It's still early, probably the schedule for the next day may be different, please make another request a little later or look at the preliminary inquiry
     .preliminary = Check the preliminary schedule
     .current = Check the current schedule
+
+## Lunch Feature
+
+lunch = 
+  .question = We're signing up for lunch
+  .with-soup = With soup
+  .with-baking = With baking
+  .watch = Just to see
 
 ## Admin Feature
 

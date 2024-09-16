@@ -1,5 +1,4 @@
 import { InlineKeyboard } from 'grammy'
-import ISO6391 from 'iso-639-1'
 import { changeScheduleTypeData } from '#root/bot/callback-data/change-schedule.js'
 import type { Context } from '#root/bot/context.js'
 
