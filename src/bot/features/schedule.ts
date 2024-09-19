@@ -22,7 +22,7 @@ feature.command('schedule', logHandle('command-schedule'), async (ctx) => {
     const currentDay = new Date().getDate()
     const currentMonth = new Date().getMonth() + 1
     return replyMsg.editText(ctx.t('schedule.current-fetched', { day: currentDay, month: currentMonth }), {
-      reply_markup: await createPreliminaryScheduleKeyboard(ctx),
+      reply_markup: createPreliminaryScheduleKeyboard(ctx),
     })
   }
 })
@@ -42,7 +42,7 @@ feature.callbackQuery(
       }
       else {
         return ctx.editMessageText(ctx.t('schedule.preliminary-fetched'), {
-          reply_markup: await createCurrentScheduleKeyboard(ctx),
+          reply_markup: createCurrentScheduleKeyboard(ctx),
         })
       }
     }
@@ -57,7 +57,7 @@ feature.callbackQuery(
         const currentDay = new Date().getDate()
         const currentMonth = new Date().getMonth() + 1
         return ctx.editMessageText(ctx.t('schedule.current-fetched', { day: currentDay, month: currentMonth }), {
-          reply_markup: await createPreliminaryScheduleKeyboard(ctx),
+          reply_markup: createPreliminaryScheduleKeyboard(ctx),
         })
       }
     }

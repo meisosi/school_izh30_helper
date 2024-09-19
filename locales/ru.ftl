@@ -37,6 +37,13 @@ lunch =
   .with-soup = С супом
   .with-baking = С выпечкой
   .watch = Просто посмотреть
+  .list = Обеды на {$today}:
+  С выпечкой: {$bakery}
+  С супом: {$soup}
+  .data-lost = Данные потеряны. Проверьте результаты вручную
+
+lunch-buttons = 
+  .list = Получить обедающих
 
 ## Admin Feature
 

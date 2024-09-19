@@ -36,6 +36,9 @@ lunch =
   .with-soup = With soup
   .with-baking = With baking
   .watch = Just to see
+  .list = Lunches for {today}:
+  With bakery: {bakery}
+  With soup: {soup}
 
 ## Admin Feature
 

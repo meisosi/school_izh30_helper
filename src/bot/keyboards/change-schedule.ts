@@ -2,7 +2,7 @@ import { InlineKeyboard } from 'grammy'
 import { changeScheduleTypeData } from '#root/bot/callback-data/change-schedule.js'
 import type { Context } from '#root/bot/context.js'
 
-export async function createPreliminaryScheduleKeyboard(ctx: Context) {
+export function createPreliminaryScheduleKeyboard(ctx: Context) {
   return InlineKeyboard.from(
     [
       [
@@ -16,7 +16,7 @@ export async function createPreliminaryScheduleKeyboard(ctx: Context) {
   )
 }
 
-export async function createCurrentScheduleKeyboard(ctx: Context) {
+export function createCurrentScheduleKeyboard(ctx: Context) {
   return InlineKeyboard.from(
     [
       [
