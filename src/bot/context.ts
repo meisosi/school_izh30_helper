@@ -8,11 +8,7 @@ import type { Logger } from '#root/logger.js'
 import type { Config } from '#root/config.js'
 
 export interface SessionData {
-  pools?: Array<string>
-  lunch?: {
-    bakery: Array<string>
-    soup: Array<string>
-  }
+  // field?: type
 }
 
 interface ExtendedContextFlavor {

@@ -37,6 +37,7 @@ lunch =
   .with-baking = With baking
   .watch = Just to see
   .list = Lunches for {today}:
+  In total: {$lunches}
   With bakery: {bakery}
   With soup: {soup}
 

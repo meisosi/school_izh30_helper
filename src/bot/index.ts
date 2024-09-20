@@ -35,6 +35,11 @@ interface Options {
 }
 
 function getSessionKey(ctx: Omit<Context, 'session'>) {
+  if (ctx.chat === undefined) {
+    const poll_id = ctx.poll?.id.toString() || ctx.pollAnswer?.poll_id.toString()
+    return `poll_${poll_id}`
+  }
+
   return ctx.chat?.id.toString()
 }
 
