@@ -32,7 +32,7 @@ schedule =
 ## Lunch Feature
 
 lunch = 
-  .question = We're signing up for lunch
+  .question = We're signing up for lunch ({$today})
   .with-soup = With soup
   .with-baking = With baking
   .watch = Just to see

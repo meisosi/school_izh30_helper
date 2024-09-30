@@ -4,13 +4,15 @@ import { logHandle } from '#root/bot/helpers/logging.js'
 import { isLunchMaster } from '#root/bot/filters/is-lunchmaster.js'
 import { getLunchesListInfoData } from '#root/bot/callback-data/lunches.js'
 import { createLunchesListKeyboard } from '#root/bot/keyboards/lunches.js'
+import { lunchDay } from '#root/bot/helpers/lunch.js'
 
 const composer = new Composer<Context>()
 
 const feature = composer.chatType('supergroup').filter(ctx => isLunchMaster(ctx.config.lunchMasters)(ctx))
 
 feature.command('lunch', logHandle('command-lunch'), async (ctx) => {
-  await ctx.replyWithPoll(ctx.t('lunch.question'), [
+  const today = lunchDay()
+  await ctx.replyWithPoll(ctx.t('lunch.question', { today }), [
     {
       text: ctx.t('lunch.with-baking'),
     },

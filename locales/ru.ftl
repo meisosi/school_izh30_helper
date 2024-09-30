@@ -33,7 +33,7 @@ schedule =
 ## Lunch Feature
 
 lunch = 
-  .question = Записываемся на обед
+  .question = Записываемся на обед ({$today})
   .with-soup = С супом
   .with-baking = С выпечкой
   .watch = Просто посмотреть
