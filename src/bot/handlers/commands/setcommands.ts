@@ -16,6 +16,10 @@ function getPrivateChatCommands(localeCode: string): BotCommand[] {
       command: 'start',
       description: i18n.t(localeCode, 'start-command-description'),
     },
+    {
+      command: 'schedule',
+      description: i18n.t(localeCode, 'schedule-command-description'),
+    },
   ]
 }
 
@@ -31,8 +35,8 @@ function getPrivateChatAdminCommands(localeCode: string): BotCommand[] {
 function getPrivateChatBetaCommands(localeCode: string): BotCommand[] {
   return [
     {
-      command: 'schedule',
-      description: i18n.t(localeCode, 'schedule-command-description'),
+      command: 'games',
+      description: i18n.t(localeCode, 'games-command-description'),
     },
   ]
 }
@@ -42,6 +46,10 @@ function getGroupChatCommands(localeCode: string): BotCommand[] {
     {
       command: 'lunch',
       description: i18n.t(localeCode, 'lunch-command-description'),
+    },
+    {
+      command: 'schedule',
+      description: i18n.t(localeCode, 'schedule-command-description'),
     },
   ]
 }
@@ -104,34 +112,39 @@ export async function setCommandsHandler(ctx: CommandContext<Context>) {
   }
 
   // set private chat commands for beta testers
-  await ctx.api.setMyCommands(
-    [
-      ...getPrivateChatCommands(DEFAULT_LANGUAGE_CODE),
-      ...getPrivateChatBetaCommands(DEFAULT_LANGUAGE_CODE),
-      ...(isMultipleLocales ? [getLanguageCommand(DEFAULT_LANGUAGE_CODE)] : []),
-    ],
-    {
-      scope: {
-        type: 'chat',
-        chat_id: Number(ctx.config.betaTesters),
+  ctx.config.betaTesters.forEach(async (tester) => {
+    await ctx.api.setMyCommands(
+      [
+        ...getPrivateChatCommands(DEFAULT_LANGUAGE_CODE),
+        ...getPrivateChatBetaCommands(DEFAULT_LANGUAGE_CODE),
+        ...(isMultipleLocales ? [getLanguageCommand(DEFAULT_LANGUAGE_CODE)] : []),
+      ],
+      {
+        scope: {
+          type: 'chat',
+          chat_id: Number(tester),
+        },
       },
-    },
-  )
+    )
+  })
 
   // set private chat commands for owner
-  await ctx.api.setMyCommands(
-    [
-      ...getPrivateChatCommands(DEFAULT_LANGUAGE_CODE),
-      ...getPrivateChatAdminCommands(DEFAULT_LANGUAGE_CODE),
-      ...(isMultipleLocales ? [getLanguageCommand(DEFAULT_LANGUAGE_CODE)] : []),
-    ],
-    {
-      scope: {
-        type: 'chat',
-        chat_id: Number(ctx.config.botAdmins),
+  ctx.config.botAdmins.forEach(async (admin) => {
+    await ctx.api.setMyCommands(
+      [
+        ...getPrivateChatCommands(DEFAULT_LANGUAGE_CODE),
+        ...getPrivateChatBetaCommands(DEFAULT_LANGUAGE_CODE),
+        ...getPrivateChatAdminCommands(DEFAULT_LANGUAGE_CODE),
+        ...(isMultipleLocales ? [getLanguageCommand(DEFAULT_LANGUAGE_CODE)] : []),
+      ],
+      {
+        scope: {
+          type: 'chat',
+          chat_id: Number(admin),
+        },
       },
-    },
-  )
+    )
+  })
 
   return ctx.reply(ctx.t('admin-commands-updated'))
 }

@@ -21,6 +21,7 @@ import { adminFeature } from '#root/bot/features/admin.js'
 import { languageFeature } from '#root/bot/features/language.js'
 import { scheduleFeature } from '#root/bot/features/schedule.js'
 import { lunchFeature } from '#root/bot/features/lunches.js'
+import { gamesFeature } from '#root/bot/features/games.js'
 import { unhandledFeature } from '#root/bot/features/unhandled.js'
 
 interface Dependencies {
@@ -74,6 +75,7 @@ export function createBot(token: string, dependencies: Dependencies, options: Op
   protectedBot.use(welcomeFeature)
   protectedBot.use(scheduleFeature)
   protectedBot.use(lunchFeature)
+  protectedBot.use(gamesFeature)
   protectedBot.use(adminFeature)
   if (isMultipleLocales)
     protectedBot.use(languageFeature)

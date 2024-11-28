@@ -13,8 +13,9 @@ welcome =
 
 ## Language Feature
 
-language-select = Please, select your language
-language-changed = Language successfully changed!
+language = 
+  .select = Please, select your language
+  .changed = Language successfully changed!
 
 ## Schedule Feature
 
@@ -28,6 +29,11 @@ schedule =
     .warning =  It's still early, probably the schedule for the next day may be different, please make another request a little later or look at the preliminary inquiry
     .preliminary = Check the preliminary schedule
     .current = Check the current schedule
+
+## Games Feature
+games = 
+  .select = You can play games here!
+  I just haven't figured out which ones yet...
 
 ## Lunch Feature
 

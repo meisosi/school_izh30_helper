@@ -10,14 +10,15 @@ const googleAuth = new google.auth.GoogleAuth({
   scopes: sheetReadScopes,
 })
 
-export async function getGoogleSheetsContent(spreadsheetId: string) {
+export async function getGoogleSheetsContent(spreadsheetId: string, range: string) {
   const docs = google.sheets({ version: 'v4', auth: googleAuth })
   try {
-    const response = await docs.spreadsheets.values.get({ spreadsheetId, range: 'A1:A7' })
+    const response = await docs.spreadsheets.values.get({ spreadsheetId, range })
     if (!response.data) {
       return undefined
     }
     const content = response.data.values
+    logger.debug(content)
 
     return content
   }
