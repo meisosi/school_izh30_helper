@@ -18,8 +18,6 @@ export async function getGoogleSheetsContent(spreadsheetId: string, range: strin
       return undefined
     }
     const content = response.data.values
-    logger.debug(content)
-
     return content
   }
   catch (error) {

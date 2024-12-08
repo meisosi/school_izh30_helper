@@ -21,12 +21,16 @@ language =
 
 schedule = 
     .fetch = Please wait a little bit
-    .current-fetched = This is the schedule for {$month}.{$day}!
-    .preliminary-fetched = This is a tentative schedule for the next day!
+    .fetched = {$day}!
+    Classroom {$grade}
+    
+    {$lessons}
     .fetch-error = Oops... There was a problem, I couldn't get the schedule
     .title = Schedule for {$date}:
-    .lesson = {$index} lesson) {$lesson}
-    .warning =  It's still early, probably the schedule for the next day may be different, please make another request a little later or look at the preliminary inquiry
+    .lesson_current = {$index} lesson ({$time})
+    .lesson_preliminary = {$index} lesson
+    .classroom = Classroom
+    .lesson = Lesson
     .preliminary = Check the preliminary schedule
     .current = Check the current schedule
 
