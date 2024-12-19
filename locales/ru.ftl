@@ -21,8 +21,16 @@ language =
 
 ## Games Feature
 games = 
-  .select = Тут можно поиграть в игры!
+  .main = Тут можно поиграть в игры!
   Только я не придумал в какие пока что...
+
+tik-tak = 
+  .invalid-game-type = Произошла ошибка, не удалоcь начать игру...
+  .title = Крестики-нолики
+  .description = Базовая игра в крестики-нолики
+  Для начала, необходимо выбрать режим игры
+  .single-player = Бот
+  .multiplayer = Игрок
 
 ## Schedule Feature
 
@@ -33,6 +41,7 @@ schedule =
     
     {$lessons}
     .fetch-error = Упс... Произошла неувязка, я не смог получить расписание
+    .invalid-schedule-type = Произошла ошибка, источник данных потерян
     .title = Расписание на {$date}:
     .lesson_current = {$index} урок ({$time})
     .lesson_preliminary = {$index} урок

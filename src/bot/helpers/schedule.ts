@@ -1,4 +1,5 @@
 import type { Context } from '#root/bot/context.js'
+import { logger } from '#root/logger.js'
 
 export function createLessonsTxt(ctx: Context, schedule: Array<Array<string>>, type: 'current' | 'preliminary'): string {
   const lessons: string[] = []
@@ -37,7 +38,8 @@ export function getScheduleForGrade(schedule: Array<Array<string>>, grade: strin
   }
 
   const columnIndex = schedule[gradeIndex].indexOf(grade)
-  for (let i = gradeIndex + 1; i < schedule.length; i++) {
+  logger.debug(schedule[gradeIndex].indexOf(grade))
+  for (let i = gradeIndex; i < schedule.length; i++) {
     if (schedule[i].length >= columnIndex + 1) {
       const time = schedule[i][1] || ''
       const subject = schedule[i][columnIndex] || ''

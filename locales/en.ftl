@@ -26,6 +26,7 @@ schedule =
     
     {$lessons}
     .fetch-error = Oops... There was a problem, I couldn't get the schedule
+    .invalid-schedule-type = An error has occurred, the data source is lost
     .title = Schedule for {$date}:
     .lesson_current = {$index} lesson ({$time})
     .lesson_preliminary = {$index} lesson

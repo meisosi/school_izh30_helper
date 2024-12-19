@@ -17,26 +17,30 @@ const feature = composer
 
 feature.command('schedule', logHandle('command-schedule'), async (ctx) => {
   if (ctx.message === undefined) {
-    return ctx.reply(ctx.t('schedule.fetch-error'))
+    return ctx.deleteMessage()
   }
   const msgThread = ctx.message.message_thread_id
   const replyMsg = await ctx.reply(ctx.t('schedule.fetch'), {
     message_thread_id: msgThread,
   })
+
   const schedule = await getGoogleSheetsContent(SHEET_ID, CURRENT)
+
   if (!schedule) {
-    return ctx.reply(ctx.t('schedule.fetch-error'), {
+    ctx.reply(ctx.t('schedule.fetch-error'), {
       message_thread_id: msgThread,
     })
+    return ctx.deleteMessage()
   }
   else {
     const grade = GRADE
     const currentDay = schedule[0][schedule[0].length - 1]
     const scheduleGrade = getScheduleForGrade(schedule, GRADE)
     const scheduleText = createLessonsTxt(ctx, scheduleGrade, 'current')
-    return replyMsg.editText(ctx.t('schedule.fetched', { day: currentDay, grade, lessons: scheduleText }), {
+    replyMsg.editText(ctx.t('schedule.fetched', { day: currentDay, grade, lessons: scheduleText }), {
       reply_markup: createPreliminaryScheduleKeyboard(ctx),
     })
+    return ctx.deleteMessage()
   }
 })
 
