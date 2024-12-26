@@ -27,9 +27,7 @@ feature.command('schedule', logHandle('command-schedule'), async (ctx) => {
   const schedule = await getGoogleSheetsContent(SHEET_ID, CURRENT)
 
   if (!schedule) {
-    ctx.reply(ctx.t('schedule.fetch-error'), {
-      message_thread_id: msgThread,
-    })
+    replyMsg.editText(ctx.t('schedule.fetch-error'))
     return ctx.deleteMessage()
   }
   else {

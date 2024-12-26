@@ -8,6 +8,8 @@ import type { PollingConfig, WebhookConfig } from '#root/config.js'
 import { config } from '#root/config.js'
 import { createServer, createServerManager } from '#root/server/index.js'
 
+process.on('unhandledRejection', err => logger.error(`Unhandled exception`, err))
+
 async function startPolling(config: PollingConfig) {
   const bot = createBot(config.botToken, {
     config,

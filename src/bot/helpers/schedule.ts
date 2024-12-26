@@ -36,12 +36,13 @@ export function getScheduleForGrade(schedule: Array<Array<string>>, grade: strin
   if (gradeIndex === -1) {
     return result
   }
+  logger.debug(schedule)
 
   const columnIndex = schedule[gradeIndex].indexOf(grade)
   logger.debug(schedule[gradeIndex].indexOf(grade))
   for (let i = gradeIndex; i < schedule.length; i++) {
     if (schedule[i].length >= columnIndex + 1) {
-      const time = schedule[i][1] || ''
+      const time = schedule[i][0] === '' ? schedule[i][1] : schedule[i][0]
       const subject = schedule[i][columnIndex] || ''
       const classroom = schedule[i][columnIndex + 1] || ''
 
