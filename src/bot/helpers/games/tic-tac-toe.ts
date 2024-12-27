@@ -1,7 +1,6 @@
 import { InlineKeyboard } from 'grammy'
 import { v4 as uuidv4 } from 'uuid'
 import { selectTicTakSellData } from '#root/bot/callback-data/play-games.js'
-import type { Context } from '#root/bot/context.js'
 import type { TicTacToeTypes } from '#root/bot/helpers/types/index.js'
 
 export class TicTacToe {
@@ -9,18 +8,19 @@ export class TicTacToe {
 
   constructor(players: [TicTacToeTypes.TicTakPlayer, TicTacToeTypes.TicTakPlayer]) {
     const gameId = uuidv4()
+    const startingPlayerIndex = Math.floor(Math.random() * 2)
 
     this.state = {
       gameId,
       board: Array(3).fill(null).map(() => Array(3).fill(null)),
-      currentPlayer: {
-        id: players[0].id,
-        name: players[0].name,
-        symbol: players[0].symbol,
-      },
+      currentPlayer: players[startingPlayerIndex],
       players,
       winner: null,
       gameEnd: false,
+    }
+
+    if (!this.state.gameEnd && this.state.currentPlayer.id === 0) {
+      this.makeComputerMove()
     }
   }
 
@@ -71,27 +71,23 @@ export class TicTacToe {
   }
 
   private makeComputerMove() {
-    // Try to win
     if (this.tryToWinOrBlock('O'))
       return
-    // Try to block opponent's win
     if (this.tryToWinOrBlock('X'))
       return
-    // Otherwise, make a random move
     this.makeRandomMove()
   }
 
   private tryToWinOrBlock(symbol: 'X' | 'O'): boolean {
     const lines = [
-      // Rows
       [[0, 0], [0, 1], [0, 2]],
       [[1, 0], [1, 1], [1, 2]],
       [[2, 0], [2, 1], [2, 2]],
-      // Columns
+
       [[0, 0], [1, 0], [2, 0]],
       [[0, 1], [1, 1], [2, 1]],
       [[0, 2], [1, 2], [2, 2]],
-      // Diagonals
+
       [[0, 0], [1, 1], [2, 2]],
       [[0, 2], [1, 1], [2, 0]],
     ]
@@ -139,15 +135,14 @@ export class TicTacToe {
 
   private checkWinner() {
     const lines = [
-      // Rows
       [this.state.board[0][0], this.state.board[0][1], this.state.board[0][2]],
       [this.state.board[1][0], this.state.board[1][1], this.state.board[1][2]],
       [this.state.board[2][0], this.state.board[2][1], this.state.board[2][2]],
-      // Columns
+
       [this.state.board[0][0], this.state.board[1][0], this.state.board[2][0]],
       [this.state.board[0][1], this.state.board[1][1], this.state.board[2][1]],
       [this.state.board[0][2], this.state.board[1][2], this.state.board[2][2]],
-      // Diagonals
+
       [this.state.board[0][0], this.state.board[1][1], this.state.board[2][2]],
       [this.state.board[0][2], this.state.board[1][1], this.state.board[2][0]],
     ]
