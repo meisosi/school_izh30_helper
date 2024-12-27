@@ -1,6 +1,7 @@
 import { createCallbackData } from 'callback-data'
 
-export const selectTicTakData = createCallbackData('game-tik-tak', {
-  cell: Number,
-  data: String,
+export const selectTicTakSellData = createCallbackData('tik-tak-move', {
+  gameId: String,
+  row: Number,
+  col: Number,
 })

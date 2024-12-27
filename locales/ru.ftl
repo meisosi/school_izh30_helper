@@ -12,7 +12,6 @@ setcommands-command-description = Обновить команды
 welcome = 
     .menu = Приветик!
 
-
 ## Language Feature
 
 language = 
@@ -20,17 +19,26 @@ language =
   .changed = Язык успешно изменен
 
 ## Games Feature
+
 games = 
   .main = Тут можно поиграть в игры!
   Только я не придумал в какие пока что...
+  .waiting = Ожидание игроков...
 
 tik-tak = 
+  .on-beta = Жди, пока не работает
   .invalid-game-type = Произошла ошибка, не удалоcь начать игру...
   .title = Крестики-нолики
   .description = Базовая игра в крестики-нолики
   Для начала, необходимо выбрать режим игры
-  .single-player = Бот
-  .multiplayer = Игрок
+  .on-play = Игра между {$player1} и {$player2}
+  Ход игрока: {$current}
+  .player = Игрок
+  .computer = Компьютер
+  .winner = Победитель: {$winner}
+  .draw = Ничья между {$player1} и {$player2}
+  .data-lost = Произошла ошибка, игра не актуальна
+  .invalid-move = Невозможный ход
 
 ## Schedule Feature
 
@@ -61,10 +69,6 @@ lunch =
   Всего: {$lunches}
   С выпечкой: {$bakery}
   С супом: {$soup}
-  .data-lost = Данные потеряны. Проверьте результаты вручную
-
-lunch-buttons = 
-  .list = Получить обедающих
 
 ## Admin Feature
 

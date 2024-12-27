@@ -20,11 +20,11 @@ export function createSelectTikTakTypeKeyboard(ctx: Context) {
     [
       [
         {
-          text: ctx.t('tik-tak.single-player'),
+          text: ctx.t('tik-tak.computer'),
           callback_data: selectTicTakTypeData.pack({ type: 'computer' }),
         },
         {
-          text: ctx.t('tik-tak.multiplayer'),
+          text: ctx.t('tik-tak.player'),
           callback_data: selectTicTakTypeData.pack({ type: 'player' }),
         },
       ],

@@ -4,6 +4,7 @@ start-command-description = Start the bot
 language-command-description = Change language
 schedule-command-description = Get schedule
 lunch-command-description =  Poll lunches
+games-command-description = Games
 setcommands-command-description = Set bot commands
 
 ## Welcome Feature
@@ -16,6 +17,23 @@ welcome =
 language = 
   .select = Please, select your language
   .changed = Language successfully changed!
+
+## Games Feature
+
+games = 
+  .main = You can play games here!
+  I just haven't figured out which ones yet...
+
+tik-tak = 
+  .on-beta = Wait until it doesn't work.
+  .invalid-game-type = An error occurred, the game could not be started...
+  .title = Tic-tac-toe
+  .description = Basic Tic-tac-toe game
+  First, you need to select the game mode.
+  .player = Player
+  .computer = Computer
+  .winner = Winner: {$winner}
+  .draw = Draw
 
 ## Schedule Feature
 
@@ -34,11 +52,6 @@ schedule =
     .lesson = Lesson
     .preliminary = Check the preliminary schedule
     .current = Check the current schedule
-
-## Games Feature
-games = 
-  .select = You can play games here!
-  I just haven't figured out which ones yet...
 
 ## Lunch Feature
 
