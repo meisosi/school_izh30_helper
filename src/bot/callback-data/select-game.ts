@@ -9,3 +9,7 @@ export const selectTicTakTypeData = createCallbackData('game-tik-tak', {
 export const entryTikTackData = createCallbackData('game-tik-tak-entry', {
   gameId: Number,
 })
+
+export const waitingPlayerData = createCallbackData('game-new-player-entry', {
+  lobbyId: Number,
+})

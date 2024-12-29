@@ -2,11 +2,13 @@ import { InlineKeyboard } from 'grammy'
 import { v4 as uuidv4 } from 'uuid'
 import { selectTicTakSellData } from '#root/bot/callback-data/play-games.js'
 import type { TicTacToeTypes } from '#root/bot/helpers/types/index.js'
+import { Game } from '#root/bot/helpers/games/game.js'
 
-export class TicTacToe {
-  private state: TicTacToeTypes.TicTacState
+export class TicTacToe extends Game {
+  protected override state: TicTacToeTypes.TicTacState
 
   constructor(players: [TicTacToeTypes.TicTakPlayer, TicTacToeTypes.TicTakPlayer]) {
+    super(players)
     const gameId = uuidv4()
     const startingPlayerIndex = Math.floor(Math.random() * 2)
 
@@ -24,7 +26,7 @@ export class TicTacToe {
     }
   }
 
-  public getState() {
+  public override getState(): TicTacToeTypes.TicTacState {
     return this.state
   }
 

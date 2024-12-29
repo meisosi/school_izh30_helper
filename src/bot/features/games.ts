@@ -2,14 +2,15 @@ import { Composer } from 'grammy'
 import { TicTacToe } from '#root/bot/helpers/games/tic-tac-toe.js'
 import type { Context } from '#root/bot/context.js'
 import { logHandle } from '#root/bot/helpers/logging.js'
-import { isBetaTester } from '#root/bot/filters/is-beta.js'
 import { selectTicTakTypeData, selectTikTakGameData } from '#root/bot/callback-data/select-game.js'
 import { createSelectGamesKeyboard, createSelectTikTakTypeKeyboard } from '#root/bot/keyboards/select-games.js'
 import { selectTicTakSellData } from '#root/bot/callback-data/play-games.js'
 import type { TicTacToeTypes } from '#root/bot/helpers/types/index.js'
+import type { Lobby } from '#root/bot/helpers/types/lobby.js'
 
 const composer = new Composer<Context>()
-const games = new Map<string, TicTacToe>()
+const ticTackToeGames = new Map<string, TicTacToe>()
+// const lobbyGames = new Map<string, Lobby>()
 
 const feature = composer
 
@@ -57,7 +58,7 @@ feature.callbackQuery(
       }
       const game = new TicTacToe([firstPlayer, computerPlayer])
       const gameState = game.getState()
-      games.set(gameState.gameId, game)
+      ticTackToeGames.set(gameState.gameId, game)
 
       return await ctx.editMessageText(ctx.t('tik-tak.on-play', {
         player1: gameState.players[0].name,
@@ -68,6 +69,9 @@ feature.callbackQuery(
       })
     }
     else {
+      // const lobby = new Lobby()
+      // lobbyGames.set('test')
+      // await ctx.editMessageText(ctx.t('games.waiting'))
       await ctx.editMessageText(ctx.t('tik-tak.on-beta'))
     }
   },
@@ -79,7 +83,7 @@ feature.callbackQuery(
   async (ctx) => {
     const { gameId, row, col } = selectTicTakSellData.unpack(ctx.callbackQuery.data)
 
-    const game = games.get(gameId)
+    const game = ticTackToeGames.get(gameId)
     if (!game)
       return ctx.answerCallbackQuery(ctx.t('tik-tak.data-lost'))
 
@@ -99,7 +103,7 @@ feature.callbackQuery(
             reply_markup: game.generateBoardKeyboard(),
           })
         }
-        games.delete(gameId)
+        ticTackToeGames.delete(gameId)
         return
       }
       return await ctx.editMessageText(ctx.t('tik-tak.on-play', {
